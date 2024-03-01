@@ -1,16 +1,16 @@
 export type PhoneEntry = {
   id: string;
   name: string;
-  data: {
-    year: number;
-    price: number;
-    'CPU Model': string;
-    'Hard disk size': string;
+  data?: {
+    year?: number;
+    price?: number;
+    'CPU Model'?: string;
+    'Hard disk size'?: string;
   } | null;
 };
 
-type NewPhoneEntryRequestData = Exclude<PhoneEntry, 'id'>;
-type NewPhoneEntryResponseData = PhoneEntry & {createdAt: string};
+export type NewPhoneEntryRequestData = Omit<PhoneEntry, 'id'>;
+export type NewPhoneEntryResponseData = PhoneEntry & {createdAt: string};
 
 function getSinglePhoneEntry(id: number): Promise<PhoneEntry> {
   if (id < 0) {
